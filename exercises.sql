@@ -63,24 +63,24 @@ USE barn;
 CREATE TABLE chicken_barn(
     id INT AUTO_INCREMENT PRIMARY KEY,
     dateOfBirth DATE,
-    gender ENUM('F', 'M'),
+    typeOfAnimal ENUM('Hen', 'Chicken', 'Rooster'),
     quantity INT
 );
 
 INSERT INTO chicken_barn 
-    (dateOfBirth, gender, quantity)
+    (dateOfBirth, typeOfAnimal, quantity)
 VALUES 
-    ('2017-01-01', 'M', 10),
-    ('2017-01-01', 'F', 5),
-    ('2017-01-01', 'M', 2),
-    ('2017-01-01', 'F', 3),
-    ('2017-01-02', 'M', 3),
-    ('2017-03-01', 'F', 2);
+    ('2017-01-01', 'Hen', 10),
+    ('2017-01-01', 'Chicken', 5),
+    ('2017-01-01', 'Chicken', 2),
+    ('2017-01-01', 'Rooster', 3),
+    ('2017-01-02', 'Rooster', 3),
+    ('2017-03-01', 'Hen', 2);
 
-SELECT dateOfBirth, (select case 1 WHEN gender = 'M' THEN 'Roosters' ELSE 'Chicks' END) as gender, sum(quantity) as quantity
+SELECT dateOfBirth, typeOfAnimal, sum(quantity) as quantity
 FROM chicken_barn
 WHERE dateOfBirth = "2017-01-01"
-GROUP BY gender;
+GROUP BY typeOfAnimal;
 
 /* OUTPUT
 +-------------+----------+----------+
